@@ -57,11 +57,10 @@ export default function LoginPage() {
           Sign in
         </Typography>
         {error && <Alert severity="error" sx={{ mt: 2 }}>{error}</Alert>}
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <TextField
             margin="normal"
             required
-            fullWidth
             id="email"
             label="Email Address"
             name="email"
@@ -73,7 +72,6 @@ export default function LoginPage() {
           <TextField
             margin="normal"
             required
-            fullWidth
             name="password"
             label="Password"
             type="password"
@@ -88,7 +86,6 @@ export default function LoginPage() {
           />
           <Button
             type="submit"
-            fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
