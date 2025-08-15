@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const app = express();
 const port = 3000;
@@ -18,13 +19,17 @@ mongoose
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
-
 // Use Routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
+
+// Serve static assets
+app.use(express.static(path.join(__dirname, 'dashboard-ui', 'dist')));
+
+// Catch-all route to serve index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'dashboard-ui', 'dist', 'index.html'));
+});
 
 app.listen(port, () => {
   console.log(`Express app listening at http://localhost:${port}`);
