@@ -30,12 +30,21 @@ export default function LoginPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('handleSubmit called');
+    const loginData = { email, password };
+    console.log('Login data:', loginData);
     try {
-      const res = await api.post('/users/login', { email, password });
+      const res = await api.post('/users/login', loginData);
+      console.log('Login successful, response:', res.data);
       localStorage.setItem('token', res.data.token);
       navigate('/');
     } catch (err) {
-      setError(err.response.data.msg);
+      console.error('Login error:', err);
+      if (err.response && err.response.data && err.response.data.msg) {
+        setError(err.response.data.msg);
+      } else {
+        setError('An unknown error occurred.');
+      }
     }
   };
 
