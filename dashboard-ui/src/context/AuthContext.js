@@ -11,9 +11,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (token) {
       setAuthToken(token);
-      // You would typically decode the token here to get user info
-      // For simplicity, we'll just set a placeholder user
-      setUser({ token });
+      setUser({ token }); // Simplified for now
     }
   }, [token]);
 
