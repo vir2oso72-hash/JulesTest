@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -18,6 +19,10 @@ db.sequelize.authenticate()
 // Use Routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/schools', require('./routes/api/schools'));
+app.use('/api/banddirectors', require('./routes/api/bandDirectors'));
+app.use('/api/students', require('./routes/api/students'));
+app.use('/api/instruments', require('./routes/api/instruments'));
 
 // Serve static assets
 app.use(express.static(path.join(__dirname, 'dashboard-ui', 'dist')));
