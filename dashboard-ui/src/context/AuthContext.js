@@ -18,17 +18,17 @@ export const AuthProvider = ({ children }) => {
   }, [token]);
 
   const login = async (username, password) => {
-    const { token, user } = await loginService(username, password);
-    localStorage.setItem('token', token);
-    setToken(token);
-    setUser(user);
+    const { token: newToken, user: loggedInUser } = await loginService(username, password);
+    localStorage.setItem('token', newToken);
+    setToken(newToken);
+    setUser(loggedInUser);
   };
 
   const register = async (username, password, roleId) => {
-    const { token, user } = await registerService(username, password, roleId);
-    localStorage.setItem('token', token);
-    setToken(token);
-    setUser(user);
+    const { token: newToken, user: registeredUser } = await registerService(username, password, roleId);
+    localStorage.setItem('token', newToken);
+    setToken(newToken);
+    setUser(registeredUser);
   };
 
   const logout = () => {
